@@ -45,11 +45,11 @@ const forEach = function (arr, cb) {
    */
 
   const reduce = function (arr, cb, initialValue) {
-    initialValue = 0;
+    let result = initialValue
     for(let i = 0; i < arr.length; i++) {
-        initialValue += cb(arr[i]);
+        result = cb(result, arr[i]);
     }
-    console.log(initialValue);
+    console.log(result);
   };
   
   /* 
@@ -59,17 +59,25 @@ const forEach = function (arr, cb) {
   
     example 2: [{num: 2}, {num: 4}, {num: 6}, {num: 8}]
     output 2: 20
+
+     example 3: [2, 3, 4, 5, 6]
+    output 3: {2: 2, 3: 3, 4: 4, 5: 5, 6: 6, sum: 20}
   */
 
- reduce([2,4,6,8], (num) => {
-     return num;
- })
+ reduce([2,4,6,8], (accum, num) => {
+     return accum + num;
+ }, 0)
  // 20
 
- reduce([{num: 2}, {num: 4}, {num: 6}, {num: 8}], (item) => {
-     return item.num;
- })
+ reduce([{num: 2}, {num: 4}, {num: 6}, {num: 8}], (accum, item) => {
+     return accum + item.num;
+ }, 0)
  // 20
+
+ reduce([2, 3, 4, 5, 6], (accum, num) => {
+    return accum[num] = num;
+ }, {})
+ // {2: 2, 3: 3, 4: 4, 5: 5, 6: 6, sum: 20}
 
   
   /**
