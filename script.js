@@ -75,7 +75,16 @@ const forEach = function (arr, cb) {
  // 20
 
  reduce([2, 3, 4, 5, 6], (accum, num) => {
-    return accum[num] = num;
+    accum[num] = num;
+    accum.sum = 0;
+    for(let val in accum) {
+      if(val === 'sum') {
+        continue;
+      }
+      accum.sum += parseInt(val)
+    }
+    return accum
+    
  }, {})
  // {2: 2, 3: 3, 4: 4, 5: 5, 6: 6, sum: 20}
 
