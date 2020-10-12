@@ -36,8 +36,10 @@ describe('_reduce', () => {
       { population: 200000 },
       { attractions: ['Hollywood', 'Beach', 'DisneyLand'] },
     ];
-    const callback = () => {
-      //write code here
+    const callback = (accum, next) => {
+      const obj = accum;
+      obj[Object.keys(next)] = Object.values(next)[0];
+      return accum;
     };
 
     expect(_reduce(arr, callback)).toEqual({
