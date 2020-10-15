@@ -38,13 +38,20 @@ function _reduce(arr, cb, initialValue) {
 
 // You can use reduce to write filter method or for loop
 function _filter(arr, cb) {
-  const newArray = [];
-    for(let i = 0; i < arr.length; i++) {
-        if(cb(arr[i])) {
-            newArray.push(arr[i]);
-        }
+  return _reduce(arr, function(accum, next) {
+    if(cb(next)) {
+      accum.push(next)
     }
-    return newArray
+    return accum;
+  },[])
+
+  // const newArray = [];
+  //   for(let i = 0; i < arr.length; i++) {
+  //       if(cb(arr[i])) {
+  //           newArray.push(arr[i]);
+  //       }
+  //   }
+  //   return newArray
 }
 
 /**
@@ -53,9 +60,14 @@ function _filter(arr, cb) {
  */
 // You can use reduce to write map method or for loop
 function _map(arr, cb) {
-  const newArray = [];
-    for(let i = 0; i < arr.length; i++) {
-        newArray.push(cb(arr[i]));
-    }
-    return newArray;
+  return _reduce(arr, function(accum, next) {
+    accum.push(cb(next))
+    return accum;
+  },[])
+
+  // const newArray = [];
+  //   for(let i = 0; i < arr.length; i++) {
+  //       newArray.push(cb(arr[i]));
+  //   }
+  //   return newArray;
 }
