@@ -22,18 +22,13 @@ function _forEach(arr, cb) {
  * @return { single value }
  */
 function _reduce(arr, cb, initialValue) {
-  let result = initialValue;
-  if(initialValue === undefined) {
-      result = arr[0];
-      for(let i = 1; i < arr.length; i++) {
+  if(arr.length !== 0) {
+    let result = initialValue === undefined ? arr[0] : initialValue;
+    for(let i = [initialValue === undefined ? 1 : 0]; i < arr.length; i++) {
         result = cb(result, arr[i])
-      }
-  } else {
-    for(let i = 0; i < arr.length; i++) {
-      result = cb(result, arr[i])
     }
-  }
   return result;
+  }
 }
 
 /**
